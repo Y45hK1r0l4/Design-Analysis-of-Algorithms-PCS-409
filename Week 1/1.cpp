@@ -10,7 +10,7 @@ void linearsearch(int arr[],int n,int key){
             return;
         }
     }
-        cout<<key<< " not present";
+      cout<<key<< " not present";
       return ;
 }
 int main(){
@@ -24,6 +24,6 @@ int main(){
     }
     int key;
     cout<<"enter the key you want to search";
-     cin>>key;
+      cin>>key;
     linearsearch(arr,n,key);
 }
