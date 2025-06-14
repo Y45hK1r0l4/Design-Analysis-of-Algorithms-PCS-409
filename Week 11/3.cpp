@@ -13,7 +13,7 @@ bool canPartition(vector<int>& nums) {
     dp[0] = true;
 
     for (int num : nums) {
-        for (int i = target; i >= num; --i) {
+        for (int i = target; i >= num; i--) {
             dp[i] = dp[i] || dp[i - num];
         }
     }
@@ -26,7 +26,7 @@ int main() {
     cin >> n;
 
     vector<int> arr(n);
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
         cin >> arr[i];
 
     if (canPartition(arr))
