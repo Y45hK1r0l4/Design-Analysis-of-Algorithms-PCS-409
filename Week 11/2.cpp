@@ -7,7 +7,7 @@ int countWaysToMakeSum(int N, vector<int>& coins) {
     dp[0] = 1;  // 1 way to make sum 0 (use no coins)
 
     for (int coin : coins) {
-        for (int i = coin; i <= N; ++i) {
+        for (int i = coin; i <= N; i++) {
             dp[i] += dp[i - coin];
         }
     }
@@ -20,7 +20,7 @@ int main() {
     cin >> coinCount;
 
     vector<int> coins(coinCount);
-    for (int i = 0; i < coinCount; ++i) {
+    for (int i = 0; i < coinCount; i++) {
         cin >> coins[i];
     }
 
