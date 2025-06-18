@@ -35,14 +35,14 @@ int main() {
     cin >> n;
 
     vector<vector<int>> graph(n, vector<int>(n));
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < n; ++j)
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
             cin >> graph[i][j];
 
     vector<int> visited(n, -1);
     bool isBipartite = true;
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         if (visited[i] == -1) {
             if (!bfs(i, graph, visited)) {
                 isBipartite = false;
