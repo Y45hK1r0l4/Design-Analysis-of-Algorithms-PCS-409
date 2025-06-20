@@ -105,4 +105,37 @@ int main() {
 
 
 
+int countValidSubarrays(const vector<int>& arr, int K) {
+    int N = arr.size();
+    int count = 0;
+
+    // i is the starting index of the subarray
+    for (int i = 0; i < N; ++i) {
+        unordered_map<int, int> freq;
+
+        // j is the ending index of the subarray
+        for (int j = i; j < N; ++j) {
+            freq[arr[j]]++;  // Update frequency of arr[j]
+
+            // Check if all elements in current subarray appear at least K times
+            bool valid = true;
+            for (const auto& p : freq) {
+                if (p.second < K) {
+                    valid = false;
+                    break;
+                }
+            }
+
+            // If all frequencies >= K, count this subarray
+            if (valid)
+                count++;
+        }
+    }
+
+    return count;
+}
+
+
+
+
 
