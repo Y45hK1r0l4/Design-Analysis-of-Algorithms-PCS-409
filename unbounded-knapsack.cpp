@@ -33,3 +33,47 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int rodCutting(const vector<int>& price, int N) {
+    vector<int> dp(N + 1, 0);  // dp[i] = max value for rod of length i
+
+    for (int len = 1; len <= N; ++len) {
+        for (int cut = 1; cut <= len; ++cut) {
+            dp[len] = max(dp[len], price[cut - 1] + dp[len - cut]);
+        }
+    }
+
+    // Print the DP table
+    cout << "\nDP table:\n";
+    for (int i = 0; i <= N; i++)
+        cout << "dp[" << i << "] = " << dp[i] << "\n";
+
+    return dp[N];
+}
+
+int main() {
+    int N;
+    cout << "Enter the length of the rod: ";
+    cin >> N;
+
+    vector<int> price(N);
+    cout << "Enter the price for each length from 1 to " << N << ":\n";
+    for (int i = 0; i < N; ++i)
+        cin >> price[i];
+
+    int maxValue = rodCutting(price, N);
+    cout << "\nMaximum obtainable value = " << maxValue << endl;
+
+    return 0;
+}
+
