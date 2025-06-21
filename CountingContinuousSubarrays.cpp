@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -139,3 +140,43 @@ int countValidSubarrays(const vector<int>& arr, int K) {
 
 
 
+
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+
+int countContinuousSubarrays(vector<int>& nums) {
+    int n = nums.size();
+    multiset<int> window;
+    int left = 0;
+    long long count = 0;
+
+    for (int right = 0; right < n; ++right) {
+        window.insert(nums[right]);
+
+        while (*window.rbegin() - *window.begin() > 2) {
+            window.erase(window.find(nums[left]));
+            ++left;
+        }
+
+        // All subarrays ending at 'right' and starting from 'left' to 'right' are valid
+        count += (right - left + 1);
+    }
+
+    return count;
+}
+
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    
+    vector<int> nums(n);
+    cout << "Enter array:\n";
+    for (int i = 0; i < n; ++i)
+        cin >> nums[i];
+
+    cout << "Total continuous subarrays = " << countContinuousSubarrays(nums) << endl;
+    return 0;
+}
